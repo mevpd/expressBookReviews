@@ -1,17 +1,17 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const session = require('express-session')
-const customer_routes = require('./router/auth_users.js').authenticated;
-const genl_routes = require('./router/general.js').general;
+import express, { json } from 'express';
+import jwt from 'jsonwebtoken';
+import session from 'express-session';
+import { authenticated as customer_routes } from './router/auth_users.js';
+import { general as genl_routes } from './router/general.js';
 
 const app = express();
 
-app.use(express.json());
+app.use(json());
 
 app.use("/customer",session({secret:"fingerprint_customer",resave: true, saveUninitialized: true}))
 
 app.use("/customer/auth/*", function auth(req,res,next){
-//Write the authenication mechanism here
+    
 });
  
 const PORT =5000;
